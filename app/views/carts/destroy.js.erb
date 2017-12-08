@@ -1,0 +1,3 @@
+$('#order_item_<%=@item.id%>').remove();
+$('#items_in_cart').html('<%= link_to "Cart | Total items: #{ cart_items }", cart_path %>');
+$('#total').html('Your Total: <%= number_to_currency current_order.total_price %>')
