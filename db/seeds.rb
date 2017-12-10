@@ -9,7 +9,7 @@ class Seed
 
   def generate_products
     20.times do |i|
-      Product.create!(name: Faker::Lorem.word, price: rand(10...100), description: Faker::Lorem.sentence(5, false, 0).chop, image: Faker::LoremPixel.image)
+      Product.create!(name: Faker::Lorem.word, price: rand(10...100), description: Faker::Lorem.sentence(5, false, 0).chop, photo: URI.parse(Faker::LoremPixel.image))
     end
 
     p "Created #{Product.count} products"
@@ -21,6 +21,7 @@ class Seed
 
   def clear
     Product.destroy_all
+    User.destroy_all
   end
 end
 

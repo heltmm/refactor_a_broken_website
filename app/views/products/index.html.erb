@@ -6,7 +6,7 @@
     <div class="col s4">
       <h4><%= link_to product.name, product_path(product), remote: true %></h4>
       <div class='product_detail' id='product_detail_<%=product.id%>'>
-        <%= image_tag(product.image) %>
+        <%= image_tag(product.photo) %>
         <p><%= product.description %></p>
       </div>
       <p><%= number_to_currency product.price %></p>
