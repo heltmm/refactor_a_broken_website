@@ -8,6 +8,12 @@
       <div class='product_detail' id='product_detail_<%=product.id%>'>
         <%= image_tag(product.photo) %>
         <p><%= product.description %></p>
+        <% if admin %>
+          <%= link_to "Delete", product_path(product), :class => "btn btn-danger",
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"} %>
+          <%= link_to "Edit", edit_product_path(product), :class => "btn btn-warning" %>
+        <% end %>
       </div>
       <p><%= number_to_currency product.price %></p>
       <%= form_for @order_item, remote: true do |f| %>

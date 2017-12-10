@@ -1,0 +1,14 @@
+<h1>Edit product.</h1>
+
+  <%= form_for @product do |f| %>
+    Name: <%= f.text_field :name %>
+    <%= image_tag(@product.photo) %><br>
+    <%= f.label :photo, class: 'col-sm-2 control-label'  %>
+    <div class="col-sm-6">
+        <%= f.file_field :photo %>
+    </div><br>
+    Description: <%= f.text_field :description %>
+    Price: <%= f.number_field :price, :step => 0.01 %>
+  <%= f.submit "Submit" %>
+
+<% end %>
