@@ -12,7 +12,6 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    binding.pry
     @order = current_order
     @item = @order.order_items.find(params[:id])
     @item.update_attributes(item_params)
