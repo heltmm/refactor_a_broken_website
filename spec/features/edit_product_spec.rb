@@ -1,24 +1,40 @@
+require 'rails_helper'
+
 describe "the edit a product process" do
+
+  product = Product.create!(name: 'Tony Hawk Pro Skater 1', price: rand(10...100), description: Faker::Lorem.sentence(5, false, 0).chop, photo: URI.parse(Faker::LoremPixel.image))
+
+  User.create!(email: "test@gmail.com", password: "password", admin: true)
+
   it "edits a product" do
 
-    User.Create!(email: "test@gmail.com", password: "password", admin: true)
-    # sign in as admin to add product
-    visit new_user_session_path
-    fill_in 'Email', :with => 'test@gmail.com'
-    fill_in 'Password', :with => 'password'
-    within(".actions") do
-      click_on 'Log in'
+    # sign in as admin to edit product
+    visit sign_in_path
+    fill_in 'email', :with => 'test@gmail.com'
+    fill_in 'password', :with => 'password'
+    within(".waves-effect") do
+      click_on 'Sign in'
     end
 
+    visit edit_product_path(product)
 
-    fill_in 'Name', :with => 'Home stuff'
-    click_on 'Create List'
-    expect(page).to have_content 'Lists'
+    fill_in 'product_name', :with => 'Tony Hawk Pro Skater 2'
+    click_on 'Submit'
+    expect(page).to have_content 'Product successfully updated!'
   end
 
   it "gives error when no name is entered" do
-    visit new_list_path
-    click_on 'Create List'
+    # sign in as admin to edit product
+    visit sign_in_path
+    fill_in 'email', :with => 'test@gmail.com'
+    fill_in 'password', :with => 'password'
+    within(".waves-effect") do
+      click_on 'Sign in'
+    end
+
+    visit edit_product_path(product)
+    fill_in 'product_name', :with => ''
+    click_on 'Submit'
     expect(page).to have_content 'errors'
   end
 end
