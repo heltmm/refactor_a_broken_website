@@ -4,6 +4,7 @@ class Seed
     seed = Seed.new
     seed.clear
     seed.generate_products
+    seed.generate_admin
   end
 
   def generate_products
@@ -12,6 +13,10 @@ class Seed
     end
 
     p "Created #{Product.count} products"
+  end
+
+  def generate_admin
+    User.create!(name: "aGuy", email: "test@gmail.com", password: "password", admin: true)
   end
 
   def clear
