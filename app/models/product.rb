@@ -5,4 +5,5 @@ class Product < ApplicationRecord
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   validates :price, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :name, :description, :photo, presence: true
 end
